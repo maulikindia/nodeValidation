@@ -1,0 +1,17 @@
+{
+  "name": "nodevalidation",
+  "version": "1.0.0",
+  "description": "Node projectc to understand the use of mongoose schema validation and use of dynamic ref in mongoose.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mongoose",
+    "refPath",
+    "validation",
+    "joi"
+  ],
+  "author": "Maulik Bhalala",
+  "license": "ISC"
+}
