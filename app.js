@@ -16,7 +16,12 @@ app.use(expressValidation());
 let demoRoutes = require('./routes/demoRoute');
 let db = require('./db');
 let mongoose = require('mongoose');
-mongoose.connect(db.dbUrl, { useNewUrlParser: true }, async (err) => {
+let opts =
+{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}
+mongoose.connect(db.dbUrl, opts, async (err) => {
     if (!err)
         console.log(`db url is:${db.dbUrl}`);
 })
