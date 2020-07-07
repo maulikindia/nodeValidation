@@ -167,8 +167,6 @@ router.get('/to-do', async (req, res) => {
 let task = require('../models/task');
 router.post('/task', async (req, res) => {
     let bodyData = req.body;
-
-    let d = task.myFunc();
     await task.create(bodyData, async (err, respo) => {
 
         if (err) {
@@ -185,11 +183,8 @@ router.post('/task', async (req, res) => {
 
 router.get('/task', async (req, res) => {
 
-    let k = task.findByTaskId(101);
-    // console.log(k)
-
-    await task.findByTaskId(101, async (err, respo) => {
-
+    // mongoose statics method call.
+    await task.findByTaskId('task description', async (err, respo) => {
         if (err) {
             return res.json({ status: false, msg: err, data: [] });
         }
@@ -198,6 +193,8 @@ router.get('/task', async (req, res) => {
             return res.json({ status: true, msg: '', data: respo });
         }
     });
+
+
 
 })
 module.exports = router;

@@ -7,14 +7,15 @@ let taskSchema = new mongoose.Schema({
 
 });
 
+//it will used on the direct schema
+taskSchema.statics.findByTaskId = function myFunc(cb, desc) {
+    return this.where('desc', desc).exec(cb);
+}
 
-taskSchema.statics.findByTaskId = function myFunc(id) {
-    // return this.find({ taskId: id });
-    console.log('hhh')
+//it will used on instance
+taskSchema.methods.demoFunction = function (cb) {
+    return this.model('task').find({ taskId: this.taskId }, cb);
 }
 
 
 module.exports = mongoose.model('task', taskSchema);
-// let tsk = mongoose.model('task', taskSchema);
-
-// module.exports = tsk;
