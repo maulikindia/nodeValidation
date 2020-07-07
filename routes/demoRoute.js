@@ -99,6 +99,7 @@ router.post('/demo', async (req, res) => {
     req.checkBody('name').isLength({ min: 5 }).withMessage('name should have minimum 5 charcaters').isLength({ max: 25 }).withMessage('Name should not be more than 25 characters')
     req.checkBody('rollNo').isNumeric().withMessage('please enter roll number in Numeric only').isLength({ min: 1 }).withMessage('please enter rollNo')
     req.checkBody('email').isEmail().isLength({ max: 50 }).withMessage('email can not be more than 50 characters').isLength({ min: 11 }).withMessage('please enter email with more than 11 characters')
+    req.checkBody('role').notEmpty().withMessage('it should not be null')
 
     let errors = req.validationErrors();
     if (errors) {
