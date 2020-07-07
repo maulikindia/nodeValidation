@@ -2,7 +2,7 @@ let express = require('express');
 let logger = require('morgan');
 let bodyParser = require('body-parser');
 
-
+let expressValidation = require('express-validator');
 let app = express();
 let port = 3500;
 
@@ -11,6 +11,7 @@ let port = 3500;
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressValidation());
 
 let demoRoutes = require('./routes/demoRoute');
 let db = require('./db');
