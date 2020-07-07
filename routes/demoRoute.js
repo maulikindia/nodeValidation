@@ -121,4 +121,24 @@ router.post('/demo', async (req, res) => {
 
 });
 
+//validate schema using custome validation and post data to todo model.
+
+let todo = require('../models/todo');
+
+router.post('/to-do', async (req, res) => {
+    let bodyData = req.body;
+
+    console.log(typeof req.body.taskDesc);
+    await todo.create(bodyData, async (err, respo) => {
+        if (err) {
+            return res.json({ status: false, msg: err, data: [] });
+        }
+        else if (respo !== null) {
+            return res.json({ status: true, msg: "", data: respo });
+
+        }
+
+    });
+});
+
 module.exports = router;
