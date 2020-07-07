@@ -17,4 +17,4 @@ taskSchema.statics.findByTaskId = function myFunc(id) {
 module.exports = mongoose.model('task', taskSchema);
 // let tsk = mongoose.model('task', taskSchema);
 
-module.exports = tsk;
+// module.exports = tsk;
