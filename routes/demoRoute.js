@@ -124,21 +124,45 @@ router.post('/demo', async (req, res) => {
 //validate schema using custome validation and post data to todo model.
 
 let todo = require('../models/todo');
-
+//create multiple enteries of to-do' 
 router.post('/to-do', async (req, res) => {
     let bodyData = req.body;
 
-    console.log(typeof req.body.taskDesc);
-    await todo.create(bodyData, async (err, respo) => {
+    // console.log(typeof req.body.taskDesc);
+    let todoArray = [];
+    for (let i = 0; i < 2000; i++) {
+
+        let todoObj = {};
+        todoObj.todoId = (req.body.todoId) + i;
+        todoObj.taskDesc = req.body.taskDesc;
+        todoObj.email = todoObj.todoId + req.body.email;
+        todoArray.push(todoObj);
+    }
+
+    await todo.insertMany(todoArray, async (err, respo) => {
+        if (err) {
+            return res.json({ status: false, msg: err, data: [] });
+        }
+        else {
+            return res.json({ status: true, msg: "added", data: [] });
+        }
+    });
+});
+
+
+
+router.get('/to-do', async (req, res) => {
+    await todo.find({ todoId: 866 }, async (err, respo) => {
         if (err) {
             return res.json({ status: false, msg: err, data: [] });
         }
         else if (respo !== null) {
-            return res.json({ status: true, msg: "", data: respo });
-
+            return res.json({ status: true, msg: " ", data: respo });
         }
+    })
 
-    });
-});
+})
+
+
 
 module.exports = router;

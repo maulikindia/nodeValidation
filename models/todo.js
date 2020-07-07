@@ -1,5 +1,5 @@
 
-let mongoose=require('mongoose');
+let mongoose = require('mongoose');
 let validateEmail = function (email) {
     if (email) {
         email.length > 2;
@@ -14,17 +14,21 @@ function stringValue(data) {
 }
 
 let todoSchema = new mongoose.Schema({
-    todoId: { type: Number, required: 'todoId is required' }, // required:'' is a alternation of the - required[true,msg] 
+    todoId: {
+        type: Number, required: 'todoId is required',
+        index: true
+    }, // required:'' is a alternation of the - required[true,msg] 
     taskDesc: {
         type: String, validate: [checkForEmpty, 'task desc should not be empty'],
-        trim: true
+        trim: true,
     },
     email: {
         type: String,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address'], //match used to matching with prefined regex 
         minlength: 15,
         maxlength: 50,
-        trim: true
+        trim: true,
+        index: true
     }
 });
 
